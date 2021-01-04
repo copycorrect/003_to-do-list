@@ -449,5 +449,93 @@ template {
 
 * {
   box-sizing: border-box;
-  background-color: purple;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: rosybrown;
+  font-size: 16px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.note {
+  max-width: 50%;
+  background-color: lightblue;
+  margin: 10px;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+.note__title {
+  font-size: 20px;
+  font-weight: 700;
+  outline: none;
+}
+
+.note__list {
+  padding: 0;
+}
+.note__list li {
+  list-style: none;
+  margin: 3px 0;
+  display: flex;
+  align-items: start;
+  position: relative;
+  padding-right: 15px;
+}
+.note__list li:hover .delete {
+  display: block;
+}
+.note__list input[type=checkbox] {
+  display: none;
+}
+.note__list label {
+  position: relative;
+  display: inline-block;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  border-radius: 3px;
+  border: 1px solid #383838;
+}
+.note__list label:after {
+  display: block;
+  position: absolute;
+  content: "";
+  background-color: transparent;
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  right: 2px;
+  transition: background-color 0.5s;
+}
+.note__list input:checked + label:after {
+  background-color: #383838;
+}
+.note__list span {
+  outline: none;
+  word-break: break-word;
+}
+
+.delete {
+  display: none;
+  position: absolute;
+  cursor: pointer;
+  line-height: 1;
+  text-transform: uppercase;
+  font-weight: 900;
+  padding: 2px 5px;
+  right: -5px;
+}
+
+.button {
+  display: inline-block;
+  padding: 5px;
+  border: 1px solid #383838;
+  margin-right: 20px;
 }
