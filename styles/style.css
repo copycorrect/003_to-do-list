@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Change the default font family in all browsers (opinionated).
@@ -462,12 +463,41 @@ body {
   margin: 0 auto;
 }
 
+/*
+Extra small <576px
+Small ≥576px
+Medium ≥768px
+Large ≥992px
+Extra large ≥1200px
+*/
+.notes__container {
+  column-count: 1;
+  column-gap: 10px;
+  padding: 10px;
+}
+@media (min-width: 576px) {
+  .notes__container {
+    column-count: 2;
+  }
+}
+@media (min-width: 768px) {
+  .notes__container {
+    column-count: 3;
+  }
+}
+@media (min-width: 992px) {
+  .notes__container {
+    column-count: 4;
+  }
+}
+
 .note {
-  max-width: 50%;
   background-color: lightblue;
-  margin: 10px;
   padding: 10px 15px;
   border-radius: 10px;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .note__title {
@@ -490,6 +520,9 @@ body {
 .note__list li:hover .delete {
   display: block;
 }
+.note__list li:hover .content {
+  border-bottom: 1px solid gray;
+}
 .note__list input[type=checkbox] {
   display: none;
 }
@@ -502,6 +535,7 @@ body {
   margin-right: 4px;
   border-radius: 3px;
   border: 1px solid #383838;
+  cursor: pointer;
 }
 .note__list label:after {
   display: block;
@@ -517,7 +551,16 @@ body {
 .note__list input:checked + label:after {
   background-color: #383838;
 }
-.note__list span {
+.note__list div > input:checked + div.content span {
+  color: gray;
+  text-decoration: underline;
+}
+
+.content {
+  width: 100%;
+}
+.content span {
+  display: block;
   outline: none;
   word-break: break-word;
 }
@@ -536,6 +579,12 @@ body {
 .button {
   display: inline-block;
   padding: 5px;
-  border: 1px solid #383838;
+  border: none;
+  background-color: steelblue;
   margin-right: 20px;
+  outline: none;
+  border-radius: 3px;
+}
+.button:hover {
+  background-color: dodgerblue;
 }

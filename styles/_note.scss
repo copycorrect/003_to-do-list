@@ -1,9 +1,25 @@
+.notes__container {
+  column-count: 1;
+  column-gap: 10px;
+  padding: 10px;
+  @media (min-width: 576px) {
+    column-count: 2;
+  }
+  @media (min-width: 768px) {
+    column-count: 3;
+  }
+  @media (min-width: 992px) {
+    column-count: 4;
+  }
+}
+
 .note {
-  max-width: 50%;
   background-color: lightblue;
-  margin: 10px;
   padding: 10px 15px;
   border-radius: 10px;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .note__title {
@@ -22,21 +38,23 @@
     align-items: start;
     position: relative;
     padding-right: 15px;
-    &:hover{
-     .delete{
-       display: block;
-     }
-    }
-    div{
-      //display: inline-block;
+
+    &:hover {
+      .delete {
+        display: block;
+      }
+      .content{
+        border-bottom: 1px solid gray;
+      }
     }
   }
 
 
-  input[type='checkbox']{
+  input[type='checkbox'] {
     display: none;
   }
-  label{
+
+  label {
     position: relative;
     display: inline-block;
     top: 2px;
@@ -45,26 +63,43 @@
     margin-right: 4px;
     border-radius: 3px;
     border: 1px solid #383838;
-    &:after{
+    cursor: pointer;
+
+    &:after {
       display: block;
       position: absolute;
       content: '';
       background-color: transparent;
-      top: 2px; bottom: 2px; left: 2px; right: 2px;
+      top: 2px;
+      bottom: 2px;
+      left: 2px;
+      right: 2px;
       transition: background-color 0.5s;
     }
   }
-  input:checked + label{
-    &:after{
+
+  input:checked + label {
+    &:after {
       background-color: #383838;
     }
   }
-  span{
+  div > input:checked + div.content span{
+    color: gray;
+    text-decoration: underline;
+  }
+}
+
+.content {
+  width: 100%;
+
+  span {
+    display: block;
     outline: none;
     word-break: break-word;
   }
 }
-.delete{
+
+.delete {
   display: none;
   position: absolute;
   cursor: pointer;
@@ -75,9 +110,16 @@
   right: -5px;
 }
 
-.button{
+.button {
   display: inline-block;
   padding: 5px;
-  border: 1px solid #383838;
+  border: none;
+  background-color: steelblue;
   margin-right: 20px;
+  outline: none;
+  border-radius: 3px;
+
+  &:hover {
+    background-color: dodgerblue;
+  }
 }
