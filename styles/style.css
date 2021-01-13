@@ -513,20 +513,34 @@ Extra large ≥1200px
 
 .note__list {
   padding: 0;
+  margin: 10px 0 20px;
 }
 .note__list li {
   list-style: none;
-  margin: 3px 0;
   display: flex;
   align-items: start;
   position: relative;
-  padding-right: 15px;
+  padding: 5px 20px 5px 5px;
+  background-color: white;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  margin-top: -1px;
+}
+.note__list li:first-child {
+  margin-top: 0;
+}
+.note__list li:hover {
+  box-shadow: 0 0 3px 0 gray;
+  z-index: 1;
 }
 .note__list li:hover .delete {
   display: block;
 }
-.note__list li:hover .content {
-  border-bottom: 1px solid gray;
+.note__list li:hover label {
+  border: 1px solid gray;
+}
+.note__list li:hover input:checked + label:after {
+  background-color: gray;
 }
 .note__list input[type=checkbox] {
   display: none;
@@ -539,7 +553,7 @@ Extra large ≥1200px
   height: 16px;
   margin-right: 4px;
   border-radius: 3px;
-  border: 1px solid #383838;
+  border: 1px solid lightgray;
   cursor: pointer;
 }
 .note__list label:after {
@@ -554,7 +568,7 @@ Extra large ≥1200px
   transition: background-color 0.5s;
 }
 .note__list input:checked + label:after {
-  background-color: #383838;
+  background-color: lightgray;
 }
 .note__list div > input:checked + div.content span {
   color: gray;
@@ -577,8 +591,28 @@ Extra large ≥1200px
   line-height: 1;
   text-transform: uppercase;
   font-weight: 900;
-  padding: 2px 5px;
-  right: -5px;
+  padding: 2px 4px;
+  right: 0;
+  color: gray;
+}
+.delete:after {
+  display: none;
+  position: absolute;
+  content: "delete";
+  background-color: gray;
+  color: white;
+  border-radius: 3px;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 2px;
+  text-transform: none;
+  top: 120%;
+  left: -12px;
+  right: -12px;
+  text-align: center;
+}
+.delete:hover:after {
+  display: block;
 }
 
 .button {
@@ -592,4 +626,6 @@ Extra large ≥1200px
 }
 .button:hover {
   background-color: dodgerblue;
+  box-shadow: 0 0 5px 0 gray;
+  color: white;
 }
