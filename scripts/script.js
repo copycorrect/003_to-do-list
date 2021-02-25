@@ -1,5 +1,4 @@
 let d = document;
-// let addButton = d.querySelector('.button__add');
 let addButtonNote = d.querySelector('.button__note');
 
 let base = [
@@ -10,7 +9,7 @@ let base = [
             {
                 key: 0,
                 text: 'hello',
-                checked: true
+                checked: false
             },
             {
                 key: 1,
@@ -20,6 +19,11 @@ let base = [
             {
                 key: 2,
                 text: 'hi',
+                checked: false
+            },
+            {
+                key: 3,
+                text: 'ddddd',
                 checked: false
             }
 
@@ -63,8 +67,8 @@ let base = [
             },
             {
                 key: 2,
-                text: 'lofna',
-                checked: false
+                text: 'dddddddd',
+                checked: true
             }
 
         ]
@@ -113,13 +117,15 @@ let deleteItem = () => {
         noteList.querySelectorAll('li').forEach(item => {
             item.querySelector('.delete').onclick = () => {
                 noteList.removeChild(item);
-
+                if (noteList.querySelectorAll('li').length === 0) {
+                    let id = note.className.slice(-1);
+                    addListItem(id, 0)
+                }
             }
         })
     })
 
 }
-
 
 let addItem = (id) => {
     let note = d.querySelector(`.id-${id}`);
@@ -128,10 +134,9 @@ let addItem = (id) => {
     note.querySelector('.button__add').onclick = () => {
         addListItem(id, i);
         i++;
-
+        checked();
     }
 }
-
 
 let createList = (idNote) => {
     let noteList = base[idNote].notes;
@@ -170,8 +175,55 @@ let createNote = () => {
 }
 createNote();
 
-// проверяем базу,
-// если она пуста рисуем пустой ли с айди 0,
-// если что-то есть рисуем ли из базы
+let checked = () => {
+    let notes = d.querySelectorAll('.note__list');
+
+    notes.forEach(note => {
+
+        let list = note.querySelectorAll('li');
+
+        let muchChecked = 0;
+        //создаем переменую которая будет отвечать за кол-во чекнутых ли
+
+        list.forEach(li => {
+
+            let input = li.querySelector('input[type=checkbox]');
+
+
+            if (input.checked) {
+
+                // muchChecked--;
+                note.appendChild(li);
+
+            }
+            if (!input.checked) {
+                muchChecked++;
+            }
+
+            input.addEventListener('change', function () {
+
+
+                if (!input.checked) {
+
+                    if (muchChecked === 0){
+                        note.prepend(li);
+                    } else{
+                        note.querySelectorAll('li')[muchChecked - 1].after(li);
+                    }
+                    muchChecked++;
+
+                }
+                if (input.checked) {
+
+                    note.appendChild(li);
+                    muchChecked--;
+
+                }
+            });
+        });
+
+    });
+};
+checked();
 
 
